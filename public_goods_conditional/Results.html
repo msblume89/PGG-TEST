@@ -1,0 +1,50 @@
+{{ block title }}Results{{ endblock }}
+{{ block content }}
+
+    {{ if player.id_in_group == 1 }}
+        <p>
+            Sie wurden durch den Zufallsmechanismus zum Spielführer gewählt. Ihre anderen Mitspieler haben im Durchschnitt
+            {{ group.contribution_average }} zum Projekt beigetragen.
+
+            {{ if group.contribution_average == 0 }}
+                <p>
+                Bei diesem Durchschnittsbeitrag hätten Sie {{ player.contribution0 }} beigetragen. Damit kommt es für Sie zu einer
+                Auszahlung von {{ player.payoff }}n (aufgerundet).
+                Damit haben Sie in diesem Experiment einschließlich Ihrer Teilnahmegebühr insgesamt {{ participant.payoff_plus_participation_fee() }} verdient.
+                </p>
+
+            {{ elif group.contribution_average == 1 }}
+                <p>
+                Bei diesem Durchschnittsbeitrag hätten Sie {{ player.contribution1 }} beigetragen. Damit kommt es für Sie zu einer
+                Auszahlung von {{ player.payoff }}n (aufgerundet).
+                Damit haben Sie in diesem Experiment einschließlich Ihrer Teilnahmegebühr insgesamt {{ participant.payoff_plus_participation_fee() }} verdient.
+                </p>
+
+            {{ elif group.contribution_average == 2 }}
+                <p>
+                Bei diesem Durchschnittsbeitrag hätten Sie {{ player.contribution2 }} beigetragen. Damit kommt es für Sie zu einer
+                Auszahlung von {{ player.payoff }}n (aufgerundet).
+                Damit haben Sie in diesem Experiment einschließlich Ihrer Teilnahmegebühr insgesamt {{ participant.payoff_plus_participation_fee() }} verdient.
+                </p>
+
+            {{ elif group.contribution_average == 3 }}
+                <p>
+                Bei diesem Durchschnittsbeitrag hätten Sie {{ player.contribution3 }} beigetragen. Damit kommt es für Sie zu einer
+                Auszahlung von {{ player.payoff }}n (aufgerundet).
+                Damit haben Sie in diesem Experiment einschließlich Ihrer Teilnahmegebühr insgesamt {{ participant.payoff_plus_participation_fee() }} verdient.
+                </p>
+            {{ endif }}
+
+        </p>
+    {{ else }}
+        <p>
+            Ein anderer Mitspieler wurde durch den Zufallsmechanismus zum Spielführer gewählt. Die restlichen Mitspieler inkl. Ihnen haben im
+            Durchschnitt {{ group.contribution_average }} zum Projekt beigetragen. Damit kommt es für Sie zu einer Auszahlung von {{ player.payoff }}n
+            (aufgerundet). Damit haben Sie in diesem Experiment einschließlich Ihrer Teilnahmegebühr insgesamt {{ participant.payoff_plus_participation_fee() }} verdient.
+        </p>
+
+    {{ endif }}
+
+    {{ next_button }}
+
+{{ endblock }}

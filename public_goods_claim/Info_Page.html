@@ -1,0 +1,82 @@
+{{ block title }}Informationsseite{{ endblock }}
+{{ block content }}
+
+
+    <p align ="justify" style="line-height: 200%">
+        <h1></h1>
+
+<table style="line-height: 200%">
+  <tr>
+    <td><b>Beiträge (in Wertmarken)</b></td>
+    <td>{{ if player.id_in_group == 1 }}
+            Sie
+        {{ else }}
+            Gruppenmitglied 1
+        {{ endif }}
+    </td>
+
+    <td>{{ if player.id_in_group == 2 }}
+            Sie
+        {{ else }}
+            Gruppenmitglied 2
+        {{ endif }}
+    </td>
+
+    <td>{{ if player.id_in_group == 3 }}
+            Sie
+        {{ else }}
+            Gruppenmitglied 3
+        {{ endif }}
+    </td>
+
+    <td>{{ if player.id_in_group == 4 }}
+            Sie
+        {{ else }}
+            Gruppenmitglied 4
+        {{ endif }}
+    </td>
+
+  </tr>
+  <tr>
+    <td>Grundausstattung</td>
+    <td>{{ Constants.endowment }}</td>
+    <td>{{ Constants.endowment }}</td>
+    <td>{{ Constants.endowment }}</td>
+    <td>{{ Constants.endowment }}</td>
+
+   </tr>
+   <tr>
+     <td>Beitrag zum Projekt</td>
+     <td>{{ player.contribution_p1 }}</td>
+     <td>{{ player.contribution_p2 }}</td>
+     <td>{{ player.contribution_p3 }}</td>
+     <td>{{ player.contribution_p4 }}</td>
+
+   </tr>
+   <tr>
+     <td>Beitrag prozentual zur Grundausstattung</td>
+     <td>{{ player.contribution_pct_p1 }}</td>
+     <td>{{ player.contribution_pct_p2 }}</td>
+     <td>{{ player.contribution_pct_p3 }}</td>
+     <td>{{ player.contribution_pct_p4 }}</td>
+   </tr>
+       <tr>
+     <td><b>Einkommen (in Punkten)</b></td>
+   </tr>
+       <tr>
+     <td>Bereits gezahlt (subtrahiert von Ihrem Einkommen)</td>
+     <td>1</td>
+     <td>2</td>
+     <td>3</td>
+     <td>4</td>
+   </tr>
+</table>
+
+        <!-- Das entspricht einem realen Betrag von {/{ player.real_payoff }/} EUR. -->
+    </p>
+    <p style="line-height: 10%">
+        </br>
+    </p>
+    {{ next_button }}
+
+{{ endblock }}

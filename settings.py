@@ -4,12 +4,27 @@ from os import environ
 SESSION_CONFIGS = [
     dict(
         name='public_goods_simple',
-        display_name="Public Goods Claim Game",
+        display_name="Public Goods Simple Loss-Game",
         app_sequence=['public_goods_simple', 'payment_info'],
         num_demo_participants=4,
     ),
     dict(
-        name='survey', app_sequence=['survey', 'payment_info'], num_demo_participants=1
+        name='public_goods_claim',
+        display_name="Public Goods Claim-Game",
+        app_sequence=['public_goods_claim', 'payment_info'],
+        num_demo_participants=4,
+    ),
+    dict(
+        name='public_goods_cooperation',
+        display_name="Public Goods Cooperation-In-Loss-Cases-Game",
+        app_sequence=['public_goods_', 'payment_info'],
+        num_demo_participants=4,
+    ),
+    dict(
+        name='public_goods_conditional',
+        display_name="Public Goods Conditional-Contribution-Game",
+        app_sequence=['public_goods_simple', 'payment_info'],
+        num_demo_participants=4,
     ),
 ]
 

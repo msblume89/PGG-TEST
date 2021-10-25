@@ -1,0 +1,60 @@
+{{ extends "global/Page.html" }}
+{{ block title }}Ihre abhängigen Beiträge zum Projekt (Beitragstabelle){{ endblock }}
+{{ block content }}
+
+<p align ="justify" style="line-height: 200%">
+
+</br>
+
+Die Zahlen über den auf der nächsten Seite aufgelisteten Eingabefeldern sind die möglichen (gerundeten) durchschnittlichen Beiträge der <b>anderen</b> Gruppenmitglieder zum Projekt.
+Sie müssen in jedes Eingabefeld eingeben, wie viele Wertmarken Sie zum Projekt beitragen möchten – abhängig vom angegebenen durchschnittlichen Beitrag
+der anderen Mitglieder Ihrer Gruppe. <b>Sie müssen in jedes Eingabefeld eine Zahl zwischen 0 und 20 eingeben.</b> Sie müssen beispielsweise angeben,
+wie viel Sie zum Projekt beitragen, wenn die anderen durchschnittlich 0 Wertmarken zum Projekt beitragen, wie viel Sie beitragen, wenn die anderen
+durchschnittlich 1, 2 oder 3 Wertmarken beitragen, usw. Nachdem Sie in jedem Eingabefeld einen Eintrag gemacht haben, klicken Sie auf „OK“.
+</br></br>
+
+Nachdem alle Teilnehmer des Experiments einen unabhängigen Beitrag geleistet und ihre Beitragstabelle mit den abhängigen Beiträgen ausgefüllt haben, wird ein
+Zufallsmechanismus aus jeder Gruppe ein Mitglied auswählen. Für <b>dieses</b> Gruppenmitglied bestimmt seine <b>Beitragstabelle</b> seinen tatsächlichen
+Beitrag; wohingegen bei den <b>anderen drei</b> Gruppenmitgliedern ihre <b>unabhängigen Beiträge</b> ihre tatsächlichen Beiträge bestimmen. Beim Leisten Ihres
+unabhängigen Beitrags und beim Ausfüllen Ihrer Beitragstabelle werden Sie nicht erfahren, wen der Zufallsmechanismus auswählt. Sie
+müssen daher beide Entscheidungen sorgfältig abwägen, da beide Ihren tatsächlichen Beitrag bestimmen können. Zwei Beispiele sollen dies verdeutlichen.
+</br></br>
+
+<b>BEISPIEL 1</b>: Angenommen, <b>der Zufallsmechanismus wählt Sie aus</b> und die anderen drei Gruppenmitglieder leisten unabhängige Beiträge von 0, 2 bzw.
+4 Wertmarken. Der durchschnittliche Beitrag dieser drei Gruppenmitglieder beträgt daher 2 Wertmarken. Wenn Sie in Ihrer Beitragstabelle
+angegeben haben, dass Sie 1 Wertmarke beisteuern, wenn die anderen im Durchschnitt 2 Wertmarken beitragen, dann wird der Gesamtbeitrag zum Projekt
+mit 0+2+4+1=7 Wertmarken betragen. Jedes Gruppenmitglied würde also 0,4×7=2,8 Punkte aus dem Projekt zuzüglich seines jeweiligen Einkommens aus
+seinem eigenen Privatkonto verdienen. Wenn Sie stattdessen in Ihrer Beitragstabelle angegeben haben, dass Sie 19 Wertmarken beitragen würden, wenn
+die anderen im Durchschnitt 2 Wertmarken zusteuern, dann würde der Gesamtbeitrag der Gruppe zum Projekt 0+2+4+19=25 Wertmarken betragen. Jedes
+Gruppenmitglied würde 0,4×25=10 Punkte aus dem Projekt zuzüglich seines jeweiligen Einkommens von seinem eigenen Privatkonto erhalten.
+</br></br>
+
+<b>BEISPIEL 2</b>: Angenommen, <b>der Zufallsmechanismus wählt Sie nicht aus</b> und Ihr unabhängiger Beitrag beträgt 16 Wertmarken, während die der
+anderen beiden Gruppenmitglieder, die nicht durch den Zufallsmechanismus ausgewählt werden, 18 bzw. 20 Wertmarken sind. Ihr durchschnittlicher
+unabhängiger Beitrag und der dieser beiden anderen Gruppenmitglieder beträgt daher 18 Wertmarken. Wenn das Gruppenmitglied, das der Zufallsmechanismus
+ausgewählt hat, in seiner Beitragstabelle angibt, dass es 1 Wertmarke beisteuern wird, wenn die anderen drei Gruppenmitglieder im Durchschnitt 18
+Wertmarken beitragen, dann wird der Gesamtbeitrag der Gruppe zum Projekt mit 16+18+20+1=55 Wertmarken betragen. Jedes Gruppenmitglied erhält somit
+0,4×55=22 Punkte aus dem Projekt zuzüglich seines jeweiligen Einkommens aus dem eigenen Privatkonto. Wenn stattdessen das zufällig ausgewählte
+Gruppenmitglied in seiner Beitragstabelle angibt, dass es 19 beiträgt, wenn die anderen im Durchschnitt 18 Wertmarken beitragen, dann beträgt der
+Gesamtbeitrag der Gruppe zum Projekt 16+18+20+19=73 Wertmarken. Jedes Gruppenmitglied würde somit 0,4×73=29,2 Punkte aus dem Projekt zuzüglich
+seines jeweiligen Einkommens aus dem eigenen Privatkonto verdienen.
+</br></br>
+
+<b>Die zufällige Auswahl des Gruppenmitglieds, dessen Beitragstabelle seinen tatsächlichen Beitrag bestimmt,</b> erfolgt wie folgt: Jedem
+Gruppenmitglied wird eine <b>Gruppenmitglieds-ID</b> zwischen 1 und 4 zugewiesen, die seine/ihre Nummer innerhalb seiner Gruppe bezeichnet.
+Außerdem wurde zu Beginn des Experiments ein Teilnehmer zufällig ausgewählt. Dieser Teilnehmer zieht eine Kugel aus einer Urne, <b>nachdem</b>
+alle Teilnehmer ihren unabhängigen Beitrag geleistet und ihre Beitragstabelle ausgefüllt haben. Jede Kugel in der Urne hat eine andere
+Farbe und jede Farbe entspricht einer <b>Gruppenmitglieds-ID</b>: orange=1, blau=2, gelb=3, grün=4. Die resultierende Zahl wird in den Computer
+eingegeben. Zieht der zufällig ausgewählte Teilnehmer die Ihnen zugewiesene Gruppenmitglieds-ID, so bestimmt Ihre Beitragstabelle Ihren
+Beitrag und deren unabhängige Beiträge bestimmen den Beitrag der anderen Gruppenmitglieder. Andernfalls bestimmt Ihr unabhängige Beitrag
+Ihren Beitrag.
+</br></br>
+
+    {{ next_button }}
+
+
+</p>
+
+
+
+{{ endblock }}

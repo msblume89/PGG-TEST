@@ -3,11 +3,13 @@
 
 
     <p align ="justify" style="line-height: 200%">
-        Sie haben von Ihren 20 Wertmarken {{ player.contribution }}Wertmarken zum Projekt beigetragen.
+        Sie haben von Ihren {{ Constants.endowment }} Wertmarken {{ player.contribution }} Wertmarken zum Projekt beigetragen
+        und {{ player.claim }} Punkte aus dem Projekt entnommen.
         Ihr Einkommen auf Ihrem Privatkonto liegt damit bei {{ player.personal_income }} Punkten ({{ Constants.beginningloss }}
-         + {{ Constants.endowment }} - {{ player.contribution }}).
+         + {{ Constants.endowment }} - {{ player.contribution }} + {{ player.claim }}).
 
-        Ihre Gruppe hat insgesamt {{ group.total_contribution }} Wertmarken beigetragen,
+        Ihre Gruppe hat insgesamt {{ group.total_contribution }} Wertmarken zu dem Projekt beigetragen und
+        {{ group.total_claim }} Punkte aus dem Projekt entnommen,
         was zu einer individuellen Auszahlung von {{ group.individual_share }} Punkten pro Person führt.
 
 

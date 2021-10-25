@@ -1,0 +1,82 @@
+{{ block title }}Einkommensübersicht{{ endblock }}
+{{ block content }}
+
+
+    <p align ="justify" style="line-height: 200%">
+        <h1></h1>
+
+<table style="line-height: 200%" width="100%" table-layout="fixed">
+  <tr>
+    <td><b>Beiträge (in Wertmarken)</b></td>
+  </tr>
+
+  <tr>
+    <td>Summe der Beiträge der anderen Gruppenmitglieder</td>
+    <td>{{ player.contribution_others }}</td>
+  </tr>
+
+   <tr>
+     <td>Ihr Beitrag zum Projekt</td>
+     <td>{{ player.contribution }}</td>
+   </tr>
+
+   <tr>
+     <td><br><br><b>Ihre Schätzungen (in Wertmarken)</b></td>
+   </tr>
+
+   <tr>
+     <td>Summe der Beiträge der anderen Gruppenmitglieder</td>
+     <td>{{ player.expectation1 }}</td>
+   </tr>
+
+   <tr>
+     <td>Der neidrigste Beitrag der anderen Gruppenmitglieder </td>
+     <td>{{ player.expectation2 }}</td>
+   </tr>
+
+   <tr>
+     <td>Der höchste Beitrag der anderen Gruppenmitglieder </td>
+     <td>{{ player.expectation3 }}</td>
+   </tr>
+
+
+   <tr>
+     <td><br><br><b>Einkommen (in Punkten)</b></td>
+   </tr>
+
+   <tr>
+     <td>Bereits gezahlt (subtrahiert von Ihrem Einkommen)</td>
+     <td>-40</td>
+   </tr>
+
+   <tr>
+     <td>Einkommen von einbehaltenen Wertmarken</td>
+     <td>{{ player.kepttoken_income }}</td>
+   </tr>
+
+   <tr>
+     <td>Einkommen aus dem Projekt</td>
+     <td>{{ group.individual_share }}</td>
+   </tr>
+
+   <tr>
+     <td>Einkommen aus dieser Runde</td>
+     <td>{{ player.payoff }}</td>
+   </tr>
+
+   <tr>
+     <td>Gesamteinkommen einschließlich dieser Runde</td>
+     <td>{{ player.participant.payoff }}</td>
+   </tr>
+
+
+</table>
+
+        <!-- Das entspricht einem realen Betrag von {/{ player.real_payoff }/} EUR. -->
+    </p>
+    <p style="line-height: 10%">
+        </br>
+    </p>
+    {{ next_button }}
+
+{{ endblock }}
