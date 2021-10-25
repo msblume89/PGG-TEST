@@ -2,7 +2,7 @@ from otree.api import *
 
 
 class Constants(BaseConstants):
-    name_in_url = 'public_goods_simple'
+    name_in_url = 'public_goods_conditional'
     players_per_group = 4
     num_rounds = 2
     endowment = cu(20)

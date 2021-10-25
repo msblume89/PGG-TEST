@@ -17,13 +17,13 @@ SESSION_CONFIGS = [
     dict(
         name='public_goods_cooperation',
         display_name="Public Goods Cooperation-In-Loss-Cases-Game",
-        app_sequence=['public_goods_', 'payment_info'],
+        app_sequence=['public_goods_cooperation', 'payment_info'],
         num_demo_participants=4,
     ),
     dict(
         name='public_goods_conditional',
         display_name="Public Goods Conditional-Contribution-Game",
-        app_sequence=['public_goods_simple', 'payment_info'],
+        app_sequence=['public_goods_conditional', 'payment_info'],
         num_demo_participants=4,
     ),
 ]
