@@ -1,0 +1,28 @@
+{{ block title }}Zwischenergebnis{{ endblock }}
+{{ block content }}
+
+
+    <p align ="justify" style="line-height: 200%">
+        Sie haben von Ihren {{ Constants.endowment }} Wertmarken {{ player.contribution }} Wertmarken zum Projekt beigetragen
+        und {{ player.claim }} Punkte aus dem Projekt entnommen.
+        Ihr Einkommen auf Ihrem Privatkonto liegt damit bei {{ player.personal_income }} Punkten ({{ Constants.beginningloss }}
+         + {{ Constants.endowment }} - {{ player.contribution }} + {{ player.claim }}).
+
+        Ihre Gruppe hat insgesamt {{ group.total_contribution }} Wertmarken zu dem Projekt beigetragen und
+        {{ group.total_claim }} Punkte aus dem Projekt entnommen,
+        was zu einer individuellen Auszahlung von {{ group.individual_share }} Punkten pro Person führt.
+
+
+        Ihre erspielte Punktzahl in dieser Runde liegt somit bei {{ player.payoff }}n
+        (= {{ player.personal_income }} + {{ group.individual_share }}).
+        Ihre Gesamtpunktzahl liegt damit im Moment bei {{ participant.payoff }}n. Damit wird Ihnen am Ende des Spiels
+        ein Betrag von {{ participant.payoff_plus_participation_fee() }} ausgezahlt.
+
+        <!-- Das entspricht einem realen Betrag von {/{ player.real_payoff }/} EUR. -->
+    </p>
+    <p style="line-height: 10%">
+        </br>
+    </p>
+    {{ next_button }}
+
+{{ endblock }}

@@ -1,0 +1,371 @@
+{{ block title }}Zwischenergebnis{{ endblock }}
+{{ block content }}
+
+
+
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title></title>
+
+
+
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/static/bootstrap5/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/otree/css/theme.css">
+
+        <script src="/static/otree/js/jquery-3.2.1.min.js"></script>
+
+    <link href="/static/otree/css/table.css" rel="stylesheet" />
+
+    <style>
+        #admin-page-container {
+          max-width:970px;
+        }
+
+    </style>
+
+
+  <style>
+    #bottom-toolbar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      background-color: white;
+      padding-bottom: 5px;
+      padding-left: 5px;
+      width: 100%;
+    }
+
+    .field-header {
+      position: sticky;
+      top: 0;
+      background-color: white;
+    }
+
+    .id-in-session {
+      position: sticky;
+      left: 0;
+      background-color: white;
+    }
+
+    #cur-app {
+      font-weight: bold;
+      width: 30ch;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis"
+    }
+
+  </style>
+
+
+
+
+
+</head>
+<body>
+
+
+
+    </div>
+
+
+
+  <style>
+    .SessionData {
+        border-color: #dee2e6;
+    }
+  </style>
+
+
+    <div>
+
+    </div>
+    <br/>
+  </div>
+
+
+
+
+    <table class="table results-table table-hover">
+      <thead style="background-color: white; z-index: 1000">
+      <tr>
+        <th></th>
+          <th class="field-header">id_in_group</th>
+
+          <th class="field-header">Payoff</th>
+
+          <th class="field-header">Beitrag zum Projekt</th>
+
+          <th class="field-header">group.<br>prozentualer Beitrag zum Projekt</th>
+
+
+
+
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <table class="table results-table table-hover">
+      <thead style="background-color: white; z-index: 1000">
+      <tr>
+        <th></th>
+
+          <th class="field-header">id_in_group</th>
+
+          <th class="field-header">payoff</th>
+
+          <th class="field-header">contribution</th>
+
+          <th class="field-header">group.<br>total_contribution</th>
+
+
+
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <table class="table results-table table-hover">
+      <thead style="background-color: white; z-index: 1000">
+      <tr>
+        <th></th>
+
+          <th class="field-header">group</th>
+
+          <th class="field-header">role</th>
+
+          <th class="field-header">payoff</th>
+
+          <th class="field-header">id_in_subsession</th>
+
+
+
+      </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+
+  <br><br>
+  <br><br>
+  <div id="bottom-toolbar">
+    <table style="white-space:nowrap; width: 100%">
+      <tr>
+        <td>
+          <button class="btn btn-secondary btn-lg" id="app-prev">⮜</button>
+          <button class="btn btn-secondary btn-lg" id="app-next">⮞</button>
+        </td>
+        <td>
+          <button class="btn btn-secondary btn-lg" id="round-prev">⮜</button>
+          <button class="btn btn-secondary btn-lg" id="round-next">⮞</button>
+        </td>
+        <td>
+          <button class="btn btn-secondary btn-lg" id="btn-refresh">↻</button>
+        </td>
+        <td style="width: 12ch">
+          <a href="/ExportSessionWide/e78ff7wy">Plain</a> |
+          <a href="/ExportSessionWide/e78ff7wy?excel=1">Excel</a>
+        </td>
+      </tr>
+      <tr>
+        <td style="width: 30ch">
+          <div id="cur-app"></div>
+        </td>
+        <td style="width: 10ch; font-weight: bold">Round <span id="cur-round"></span></td>
+        <td><small><span id="msg-refreshed" style="display: none; color: darkgreen"></span></small></td>
+        <td></td>
+      </tr>
+    </table>
+  </div>
+  <div id="server_error" class="alert alert-danger" style="display: none;">
+    <a href="#" class="close" data-bs-dismiss="alert">&times;</a>
+    Failed to connect to server
+  </div>
+
+
+<div id='websocket-server-error' class="top-left-fixed-alert" style="visibility: hidden"></div>
+
+
+
+
+
+  <script src="/static/otree/js/internet-explorer.js"></script>
+  <script src="/static/otree/js/reconnecting-websocket-iife.min.js"></script>
+
+    <script src="/static/bootstrap5/js/bootstrap.bundle.min.js"></script>
+
+    <script src="/static/otree/js/common.js"></script>
+
+<script>
+$(function () {
+    $('[data-bs-toggle="popover"]').popover()
+
+    // if top menu link is clicked inside iframe
+    // we exit full mode
+    $("#top_menu a").click(function() {
+        if ( window.location !== window.parent.location ) {
+                window.parent.location.href = $(this).attr("href");
+        }
+    });
+});
+
+</script>
+
+<script src="/static/otree/js/jquery.color-2.1.2.min.js"></script>
+<script src="/static/otree/js/jquery.timeago.js"></script>
+<script src="/static/otree/js/jquery.timeago.en-short.js"></script>
+<script src="/static/otree/js/table-utils.js"></script>
+
+
+  <script>
+      let getElementById = (id) => document.getElementById(id);
+      let visibleTableIndex = 0;
+      let old_json = null;
+      let curAppSpan = getElementById('cur-app');
+      let curRoundSpan = getElementById('cur-round');
+      let tables = document.getElementsByClassName('results-table');
+      const round_numbers_by_subsession = [1, 2, 1];
+      const app_names_by_subsession = ['public_goods_simple', 'public_goods_simple', 'payment_info'];
+      const FIELD_HEADERS = {"public_goods_simple": ["id_in_group", "payoff", "contribution", "id_in_subsession", "total_contribution"]};
+      $(document).ready(function () {
+          $('#btn-refresh').click(function () {
+              ajax_json_results(true);
+          })
+          ajax_json_results(false);
+      });
+
+      function updateTableVisibility() {
+          for (let table of tables) {
+              table.style.display = 'none';
+          }
+          tables[visibleTableIndex].style.display = 'block';
+          let curApp = app_names_by_subsession[visibleTableIndex];
+          let curRound = round_numbers_by_subsession[visibleTableIndex];
+          curAppSpan.innerText = curApp;
+          curRoundSpan.innerText = curRound;
+          getElementById('app-prev').disabled = curApp === app_names_by_subsession[0];
+          getElementById('app-next').disabled = curApp === app_names_by_subsession[app_names_by_subsession.length - 1];
+          getElementById('round-prev').disabled = visibleTableIndex === 0;
+          getElementById('round-next').disabled = visibleTableIndex === tables.length - 1;
+
+      }
+
+      updateTableVisibility();
+
+      getElementById('app-prev').addEventListener('click', function () {
+          let curApp = app_names_by_subsession[visibleTableIndex];
+          for (let i = visibleTableIndex - 1; i >= 0; i--) {
+              if (app_names_by_subsession[i] !== curApp && round_numbers_by_subsession[i] === 1) {
+                  visibleTableIndex = i;
+                  break;
+              }
+          }
+          updateTableVisibility();
+      })
+
+      getElementById('app-next').addEventListener('click', function () {
+          let curApp = app_names_by_subsession[visibleTableIndex];
+          for (let i = visibleTableIndex + 1; i < app_names_by_subsession.length; i++) {
+              if (app_names_by_subsession[i] !== curApp) {
+                  visibleTableIndex = i;
+                  break;
+              }
+          }
+          updateTableVisibility();
+      })
+
+      getElementById('round-prev').addEventListener('click', function () {
+          if (visibleTableIndex > 0) visibleTableIndex--;
+          updateTableVisibility();
+      })
+
+      getElementById('round-next').addEventListener('click', function () {
+          if (visibleTableIndex < tables.length - 1) visibleTableIndex++;
+          updateTableVisibility();
+      })
+
+
+      function ajax_json_results(isRefresh) {
+          let $msgRefreshed = $('#msg-refreshed');
+
+          $.ajax({
+              url: '/session_data/e78ff7wy',
+              type: 'GET',
+              contentType: "application/json",
+              error: function (jqXHR, textStatus) {
+                  $("div#server_error").show();
+              },
+              success: function (new_json) {
+                  $("div#server_error").hide();
+                  let changeDescriptions = [];
+                  for (let i = 0; i < new_json.length; i++) {
+                      let table = tables[i];
+                      let appName = app_names_by_subsession[i];
+                      let headers = FIELD_HEADERS[appName];
+                      let data = new_json[i];
+                      if (old_json === null) {
+                          populateTableBody(table.querySelector('tbody'), data);
+                      } else {
+                          changeDescriptions = changeDescriptions.concat(updateDataTable($(table), data, old_json[i], headers));
+                      }
+                  }
+                  old_json = new_json;
+                  if (!isRefresh) return;
+                  let numChanges = changeDescriptions.length;
+                  let msg;
+                  if (numChanges === 0) {
+                      msg = 'No updates';
+                  } else {
+                      msg = `Updated ${numChanges} row(s): ${changeDescriptions.join('; ')}`;
+                  }
+                  // keep it short to avoid linebreak/resizing issues
+                  if (msg.length > 100) {
+                      msg = truncateStringEllipsis(msg, 100);
+                  }
+                  $msgRefreshed.text(msg);
+                  // interrupt any ongoing fadeout
+                  $msgRefreshed.stop(true, true);
+                  $msgRefreshed.show();
+                  $msgRefreshed.fadeOut(30000);
+              }
+          });
+      }
+  </script>
+
+
+
+
+
+
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    {{ next_button }}
+
+{{ endblock }}

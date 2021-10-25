@@ -1,0 +1,26 @@
+{{ extends "global/Page.html" }}
+{{ block title }}{{ endblock }}
+{{ block content }}
+
+    <p>
+        <b>Ihr Beitrag (in Wertmarken) sowie Ihre Entnahme (in Punkten)</b>
+        </br>
+        </br>
+        Ihre Grundausstattung:
+        {{ Constants.endowment }}
+        </br>
+        {{ formfields }}
+
+        </br>
+        </br>
+
+
+    </p>
+
+    <p style="line-height: 10%">
+        </br>
+    </p>
+
+    {{ next_button }}
+
+{{ endblock }}
